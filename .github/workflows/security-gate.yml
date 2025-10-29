@@ -5,7 +5,7 @@ on:
     - cron: '0 2 * * *' # Execution quotidienne à 2h du matin UTC
   push:
     branches:
-      -main
+      - main
 
 jobs:
   security_gate:
