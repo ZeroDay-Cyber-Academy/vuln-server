@@ -3,7 +3,7 @@ name: run security Scan
 on:
   schedule:
     - cron: '0 2 * * *' # Execution quotidienne à 2h du matin UTC
-  pull_request:
+  push:
     branches:
       -main
 
