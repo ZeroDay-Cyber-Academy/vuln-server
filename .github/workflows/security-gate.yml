@@ -2,7 +2,7 @@ name: run security Scan
 
 on:
   schedule:
-    - cron: '0 3 * * *' # Execution quotidienne à 2h du matin UTC
+    - cron: '0 4 * * *' # Execution quotidienne à 2h du matin UTC
   push:
     branches:
       - main
