@@ -26,6 +26,14 @@ jobs:
       - name: List files 2
         run: ls -la
 
+      - name: Check python version
+        run: python3 --version
+
       - name: Setup Python
-        run: apt install python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Check python version
+        run: python3 --version
       
