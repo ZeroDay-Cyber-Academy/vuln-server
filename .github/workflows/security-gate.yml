@@ -9,5 +9,4 @@ on:
 
 jobs:
   security_gate:
-    runs-on: self-hosted
     uses: ZeroDay-Cyber-Academy/all-reusables-workflows/.github/workflows/security-reusable-gate.yml@v1
