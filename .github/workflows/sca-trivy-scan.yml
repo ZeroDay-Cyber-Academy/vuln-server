@@ -1,7 +1,7 @@
-name: Security SAST scan
+name: Security SCA scan
 
 on:
-  push:
+  pull_request:
     branches:
       - main
       - develop
@@ -26,30 +26,15 @@ jobs:
       - name: 🧪 List files 2
         run: ls -la
 
-      - name: 🧪 check python version
-        run: python3 --version
-
-      - name: 🐍 Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: 🧪 check python version
-        run: python3 --version
-
-      - name: 📦 Install semgrep and dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install semgrep
-          semgrep --version
+      - name: 📦 Install trivy
+        run: curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sudo sh -s -- -b /usr/local/bin v0.67.2
       
       - name: 🆔 Generate unique and random string for unique file naming
         run: echo "UNIQ_STR=$(head /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 30)" >> "$GITHUB_ENV"
 
       - name: Run semgrep for scan high vulnerabilities levels and add severity result in report
         run: |
-          semgrep --config=auto . --severity=ERROR \
-            --sarif --sarif-output="output-${UNIQ_STR}.json" 
+          trivy fs --scanners vuln,secret,config . --format sarif --output output-${UNIQ_STR}.json
       
       - name: 🔄 Count and store vuln
         run: |
