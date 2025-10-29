@@ -1,0 +1,24 @@
+name: Security SAST scan 
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - preprod
+
+jobs:
+  semgrep:
+    runs-on: self-hosted
+    permissions:
+      id-token: write
+      contents: read
+      security-events: write
+      actions: read
+
+    steps:
+      - name: List files
+        run: ls -la
+
+      - name: Hello World
+        run: echo "Hello World depuis le runner self-hosted ✅"
