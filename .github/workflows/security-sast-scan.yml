@@ -20,5 +20,12 @@ jobs:
       - name: List files
         run: ls -la
 
-      - name: Hello World
-        run: echo "Hello World depuis le runner self-hosted ✅"
+      - name: Checkout du code
+        uses: actions/checkout@v4
+
+      - name: List files 2
+        run: ls -la
+
+      - name: Setup Python
+        run: apt install python
+      
