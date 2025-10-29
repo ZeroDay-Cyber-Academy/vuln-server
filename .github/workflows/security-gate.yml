@@ -1,0 +1,13 @@
+name: run security Scan
+
+on:
+  schedule:
+    - cron: '0 2 * * *' # Execution quotidienne à 2h du matin UTC
+  pull_request:
+    branches:
+      -main
+
+jobs:
+  security_gate:
+    runs-on: self-hosted
+    uses: ZeroDay-Cyber-Academy/all-reusables-workflows/.github/workflows/security-reusable-gate.yml@v1
